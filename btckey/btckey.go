@@ -251,7 +251,7 @@ func CheckWIF(wif string) (valid bool, err error) {
 	}
 
 	/* Check that the version byte is 0x80 */
-	if ver != 0x80 {
+        if ver != 0xd8 {
 		return false, fmt.Errorf("Invalid WIF version 0x%02x, expected 0x80.", ver)
 	}
 
@@ -300,7 +300,7 @@ func (priv *PrivateKey) ToWIF() (wif string) {
 	priv_bytes := priv.ToBytes()
 
 	/* Convert bytes to base-58 check encoded string with version 0x80 */
-	wif = b58checkencode(0x80, priv_bytes)
+        wif = b58checkencode(0xd8, priv_bytes)
 
 	return wif
 }
@@ -316,7 +316,7 @@ func (priv *PrivateKey) ToWIFC() (wifc string) {
 	priv_bytes = append(priv_bytes, []byte{0x01}...)
 
 	/* Convert bytes to base-58 check encoded string with version 0x80 */
-	wifc = b58checkencode(0x80, priv_bytes)
+        wifc = b58checkencode(0xd8, priv_bytes)
 
 	return wifc
 }
@@ -332,7 +332,7 @@ func (priv *PrivateKey) FromWIF(wif string) (err error) {
 	}
 
 	/* Check that the version byte is 0x80 */
-	if ver != 0x80 {
+        if ver != 0xd8 {
 		return fmt.Errorf("Invalid WIF version 0x%02x, expected 0x80.", ver)
 	}
 
