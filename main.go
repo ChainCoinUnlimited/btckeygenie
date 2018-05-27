@@ -9,7 +9,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"fmt"
-	"github.com/vsergeev/btckeygenie/btckey"
+	"github.com/vsergeev/chckeygenie/chckey"
 	"log"
 	"os"
 )
@@ -43,7 +43,7 @@ func main() {
 			log.Fatalf("Importing WIF: %s\n", err)
 		}
 	} else {
-		/* Generate a new Bitcoin keypair */
+		/* Generate a new Chaincoin keypair */
 		priv, err = btckey.GenerateKey(rand.Reader)
 		if err != nil {
 			log.Fatalf("Generating keypair: %s\n", err)
@@ -72,11 +72,11 @@ func main() {
 	pri_bytes_str := byteString(pri_bytes)
 	pri_bytes_b64 := base64.StdEncoding.EncodeToString(pri_bytes)
 
-	fmt.Printf("Bitcoin Address (Compressed)        %s\n", address_compressed)
+	fmt.Printf("Chaincoin Address (Compressed)      %s\n", address_compressed)
 	fmt.Printf("Public Key Bytes (Compressed)       %s\n", pub_bytes_compressed_str)
 	fmt.Printf("Public Key Base64 (Compressed)      %s\n", pub_bytes_compressed_b64)
 	fmt.Println()
-	fmt.Printf("Bitcoin Address (Uncompressed)      %s\n", address_uncompressed)
+	fmt.Printf("Chaincoin Address (Uncompressed)    %s\n", address_uncompressed)
 	fmt.Printf("Public Key Bytes (Uncompressed)     %s\n", pub_bytes_uncompressed_str[0:65])
 	fmt.Printf("                                    %s\n", pub_bytes_uncompressed_str[65:])
 	fmt.Printf("Public Key Base64 (Uncompressed)    %s\n", pub_bytes_uncompressed_b64)
